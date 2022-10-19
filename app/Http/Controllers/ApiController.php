@@ -16,7 +16,11 @@ class ApiController extends Controller
             $table->phone_no=$request->phone_no;
             $table->password=md5($request->password);
             $table->save();
-            $data=[];
+            $data=[
+                "id"=>$table->id,
+                "name"=>$table->name,
+                "phone_no"=>$table->phone_no
+            ];
             $message="You have successfully registered.";
             $respo=200;
         }else{
