@@ -10,4 +10,5 @@ use App\Http\Controllers\ApiController;
 
 Route::controller(ApiController::class)->group(function () {
     Route::post('/new_register', 'register');
+    Route::post('/new_login', 'login');
 });
