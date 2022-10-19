@@ -26,15 +26,18 @@ class ApiController extends Controller
             ];
             $message="You have successfully registered.";
             $respo=200;
+            $status='1';
         }else{
             $data=[];
             $message="This phone no already registered.";
             $respo=200;
+            $status='0';
         }
 
          return response()->json([
                 'data' =>$data,
               'message' => $message,
+              'status' => $status
             ], $respo);
     }
     public function login(Request $request)
@@ -44,6 +47,7 @@ class ApiController extends Controller
             $data=[];
             $message="This phone no is not registered.";
             $respo=200;
+            $status='0';
         }else{
             $info=DB::table('users')->where('phone_no',$request->phone_no)->where('password',md5($request->password))->first();
             $table=User::find($info->id);
@@ -57,10 +61,12 @@ class ApiController extends Controller
             ];
             $message="You have successfully logedin.";
             $respo=200;
+            $status='1';
         }
         return response()->json([
             'data' =>$data,
           'message' => $message,
+          'status' => $status
         ], $respo);
     }
 }
